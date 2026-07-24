@@ -1,0 +1,215 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../theme/app_colors.dart';
+import '../theme/app_text_styles.dart';
+import 'home_screen.dart';
+
+class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({super.key});
+
+  @override
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
+}
+
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  final PageController _controller = PageController();
+  int _currentPage = 0;
+
+  final List<_OnboardingPage> _pages = const [
+    _OnboardingPage(
+      title: 'Suivez vos cultures\nfacilement',
+      subtitle: 'Gérez vos parcelles, suivez la croissance de vos plantes et optimisez votre récolte en un clin d\'œil.',
+      emoji: '👨‍🌾',
+      gradientColors: [Color(0xFFE8F5E9), Color(0xFFF1F8E9)],
+    ),
+    _OnboardingPage(
+      title: 'Protégez vos\nrécoltes',
+      subtitle: 'Identifiez les maladies et les ravageurs rapidement. Recevez des conseils adaptés à chaque situation.',
+      emoji: '🌿',
+      gradientColors: [Color(0xFFE3F2FD), Color(0xFFE8EAF6)],
+    ),
+    _OnboardingPage(
+      title: 'Développez votre\nactivité',
+      subtitle: 'Vendez vos produits directement, trouvez les meilleurs prix et connectez-vous avec les acheteurs.',
+      emoji: '🤝',
+      gradientColors: [Color(0xFFFBE9E7), Color(0xFFF3E5F5)],
+    ),
+  ];
+
+  void _nextPage() {
+    if (_currentPage < _pages.length - 1) {
+      _controller.nextPage(
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.easeInOut,
+      );
+    } else {
+      _goToHome();
+    }
+  }
+
+  void _goToHome() {
+    Navigator.of(context).pushReplacement(
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const HomeScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return FadeTransition(opacity: animation, child: child);
+        },
+        transitionDuration: const Duration(milliseconds: 500),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: TextButton(
+                  onPressed: _goToHome,
+                  child: Text(
+                    'Passer',
+                    style: AppTextStyles.body.copyWith(
+                      color: AppColors.lightText,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: PageView.builder(
+                controller: _controller,
+                itemCount: _pages.length,
+                onPageChanged: (index) {
+                  setState(() => _currentPage = index);
+                },
+                itemBuilder: (context, index) {
+                  return _buildPage(_pages[index]);
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 40),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                      _pages.length,
+                      (index) => AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        margin: const EdgeInsets.symmetric(horizontal: 4),
+                        width: _currentPage == index ? 32 : 8,
+                        height: 8,
+                        decoration: BoxDecoration(
+                          color: _currentPage == index
+                              ? AppColors.forestGreen
+                              : AppColors.paleGreen,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 32),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 56,
+                    child: ElevatedButton(
+                      onPressed: _nextPage,
+                      child: Text(
+                        _currentPage == _pages.length - 1
+                            ? 'Commencer'
+                            : 'Suivant',
+                        style: AppTextStyles.button,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPage(_OnboardingPage page) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
+        children: [
+          Expanded(
+            flex: 3,
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: page.gradientColors.first,
+                borderRadius: BorderRadius.circular(28),
+              ),
+              child: Center(
+                child: Text(
+                  page.emoji,
+                  style: const TextStyle(fontSize: 100),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 40),
+          Expanded(
+            flex: 2,
+            child: Column(
+              children: [
+                Text(
+                  page.title,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.darkText,
+                    height: 1.2,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  page.subtitle,
+                  textAlign: TextAlign.center,
+                  style: AppTextStyles.body.copyWith(
+                    color: AppColors.mediumText,
+                    height: 1.6,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _OnboardingPage {
+  final String title;
+  final String subtitle;
+  final String emoji;
+  final List<Color> gradientColors;
+
+  const _OnboardingPage({
+    required this.title,
+    required this.subtitle,
+    required this.emoji,
+    required this.gradientColors,
+  });
+}

@@ -1,0 +1,31 @@
+name: agribenia
+description: "Application agricole premium pour les agriculteurs du Bénin"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  google_fonts: ^6.2.1
+  flutter_svg: ^2.0.16
+  intl: ^0.20.2
+  cached_network_image: ^3.4.1
+  flutter_staggered_animations: ^1.1.1
+  shimmer: ^3.0.0
+  google_maps_flutter: ^2.10.1
+  geolocator: ^13.0.2
+  permission_handler: ^11.4.0
+  image_picker: ^1.1.2
+  flutter_animate: ^4.5.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
