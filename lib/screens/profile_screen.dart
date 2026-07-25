@@ -33,13 +33,7 @@ class ProfileScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.cardShadow,
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        border: Border.all(color: AppColors.border),
       ),
       child: Column(
         children: [
@@ -50,12 +44,6 @@ class ProfileScreen extends StatelessWidget {
               gradient: AppColors.primaryGradient,
               shape: BoxShape.circle,
               border: Border.all(color: AppColors.white, width: 4),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.forestGreen.withValues(alpha: 0.3),
-                  blurRadius: 12,
-                ),
-              ],
             ),
             child: const Center(
               child: Text(
@@ -74,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.location_on_outlined, size: 14, color: AppColors.lightText),
+              const Icon(Icons.location_on_outlined, size: 14, color: AppColors.textMuted),
               const SizedBox(width: 4),
               Text('Zè, Atlantique, Bénin', style: AppTextStyles.bodySmall),
             ],
@@ -83,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
-              color: AppColors.forestGreen.withValues(alpha: 0.1),
+              color: AppColors.forestGreen.withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
@@ -103,39 +91,39 @@ class ProfileScreen extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: _buildStatItem('🌾', '5', 'Cultures'),
+          child: _buildStatItem('5', 'Cultures'),
         ),
         const SizedBox(width: 12),
         Expanded(
-          child: _buildStatItem('📊', '3.2t', 'Rendement'),
+          child: _buildStatItem('3.2t', 'Rendement'),
         ),
         const SizedBox(width: 12),
         Expanded(
-          child: _buildStatItem('💰', '1.8M', 'FCFA'),
+          child: _buildStatItem('1.8M', 'FCFA'),
         ),
       ],
     );
   }
 
-  Widget _buildStatItem(String emoji, String value, String label) {
+  Widget _buildStatItem(String value, String label) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.border),
       ),
       child: Column(
         children: [
-          Text(emoji, style: const TextStyle(fontSize: 24)),
-          const SizedBox(height: 8),
           Text(
             value,
             style: GoogleFonts.poppins(
               fontSize: 18,
               fontWeight: FontWeight.w700,
-              color: AppColors.darkText,
+              color: AppColors.forestGreen,
             ),
           ),
+          const SizedBox(height: 4),
           Text(label, style: AppTextStyles.statLabel),
         ],
       ),
@@ -147,6 +135,7 @@ class ProfileScreen extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: AppColors.border),
       ),
       child: Column(
         children: [
@@ -154,14 +143,12 @@ class ProfileScreen extends StatelessWidget {
             Icons.landscape_outlined,
             'Mes parcelles',
             'Gérer vos terrains agricoles',
-            AppColors.forestGreen,
           ),
           _buildDivider(),
           _buildMenuItem(
             Icons.palette_outlined,
             'Logo AgriBen',
             'Voir les propositions de logo',
-            const Color(0xFF22C55E),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => const LogoShowcaseScreen()),
             ),
@@ -171,7 +158,6 @@ class ProfileScreen extends StatelessWidget {
             Icons.branding_watermark_outlined,
             'Brand Kit',
             'Identité visuelle complète',
-            const Color(0xFFF59E0B),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => const BrandKitScreen()),
             ),
@@ -181,42 +167,37 @@ class ProfileScreen extends StatelessWidget {
             Icons.history_rounded,
             'Historique',
             'Vos activités récentes',
-            const Color(0xFF1565C0),
           ),
           _buildDivider(),
           _buildMenuItem(
             Icons.analytics_outlined,
             'Rapports',
             'Statistiques de production',
-            AppColors.natureGreen,
           ),
           _buildDivider(),
           _buildMenuItem(
             Icons.notifications_outlined,
             'Notifications',
             'Gérer les alertes',
-            AppColors.orangeAlert,
           ),
           _buildDivider(),
           _buildMenuItem(
             Icons.help_outline_rounded,
             'Aide & Support',
             'Questions fréquentes',
-            const Color(0xFFAB47BC),
           ),
           _buildDivider(),
           _buildMenuItem(
             Icons.settings_outlined,
             'Paramètres',
             'Préférences et compte',
-            AppColors.mediumText,
           ),
         ],
       ),
     );
   }
 
-  Widget _buildMenuItem(IconData icon, String title, String subtitle, Color color, {VoidCallback? onTap}) {
+  Widget _buildMenuItem(IconData icon, String title, String subtitle, {VoidCallback? onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
@@ -227,10 +208,10 @@ class ProfileScreen extends StatelessWidget {
               width: 42,
               height: 42,
               decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.1),
+                color: AppColors.forestGreen.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Icon(icon, color: color, size: 20),
+              child: Icon(icon, color: AppColors.forestGreen, size: 20),
             ),
             const SizedBox(width: 14),
             Expanded(
@@ -245,9 +226,9 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(
+            const Icon(
               Icons.chevron_right_rounded,
-              color: AppColors.lightText,
+              color: AppColors.textMuted,
               size: 22,
             ),
           ],
@@ -257,7 +238,7 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildDivider() {
-    return Divider(
+    return const Divider(
       height: 1,
       indent: 72,
       color: AppColors.divider,

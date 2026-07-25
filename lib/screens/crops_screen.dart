@@ -48,7 +48,7 @@ class CropsScreen extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             '4 parcelles • 8.8 hectares',
-            style: AppTextStyles.bodySmall.copyWith(color: AppColors.mediumText),
+            style: AppTextStyles.bodySmall.copyWith(color: AppColors.textSecondary),
           ),
           const SizedBox(height: 20),
           _buildSummaryRow(),
@@ -77,11 +77,11 @@ class CropsScreen extends StatelessWidget {
   Widget _buildSummaryRow() {
     return Row(
       children: [
-        _buildSummaryChip('Excellent', 2, AppColors.successGreen),
+        _buildSummaryChip('Excellent', 2, AppColors.success),
         const SizedBox(width: 8),
         _buildSummaryChip('Bonne santé', 2, AppColors.natureGreen),
         const SizedBox(width: 8),
-        _buildSummaryChip('Attention', 1, AppColors.orangeAlert),
+        _buildSummaryChip('Attention', 1, AppColors.warning),
       ],
     );
   }

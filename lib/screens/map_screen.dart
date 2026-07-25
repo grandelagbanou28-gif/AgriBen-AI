@@ -20,7 +20,7 @@ class _MapScreenState extends State<MapScreen> {
       address: 'Dantokpa, Cotonou',
       rating: 4.5,
       emoji: '🏪',
-      color: Color(0xFFE65100),
+      color: AppColors.gold,
       lat: 6.3654,
       lng: 2.4183,
     ),
@@ -30,7 +30,7 @@ class _MapScreenState extends State<MapScreen> {
       address: 'Zè, Atlantique',
       rating: 4.8,
       emoji: '🤝',
-      color: Color(0xFF1565C0),
+      color: AppColors.natureGreen,
       lat: 6.5100,
       lng: 2.3500,
     ),
@@ -40,7 +40,7 @@ class _MapScreenState extends State<MapScreen> {
       address: 'Allada, Atlantique',
       rating: 4.6,
       emoji: '👨‍🌾',
-      color: AppColors.natureGreen,
+      color: AppColors.forestGreen,
       lat: 6.4000,
       lng: 2.1500,
     ),
@@ -60,7 +60,7 @@ class _MapScreenState extends State<MapScreen> {
       address: 'Bohicon, Zou',
       rating: 4.4,
       emoji: '🏪',
-      color: Color(0xFFE65100),
+      color: AppColors.gold,
       lat: 7.1667,
       lng: 2.0667,
     ),
@@ -98,7 +98,7 @@ class _MapScreenState extends State<MapScreen> {
           Container(
             width: double.infinity,
             height: double.infinity,
-            color: AppColors.paleGreen.withValues(alpha: 0.3),
+            color: AppColors.border.withValues(alpha: 0.3),
             child: Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -108,7 +108,7 @@ class _MapScreenState extends State<MapScreen> {
                     margin: const EdgeInsets.all(20),
                     height: 400,
                     decoration: BoxDecoration(
-                      color: AppColors.paleGreen.withValues(alpha: 0.5),
+                      color: AppColors.border.withValues(alpha: 0.5),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: AppColors.natureGreen.withValues(alpha: 0.3)),
                     ),
@@ -138,7 +138,7 @@ class _MapScreenState extends State<MapScreen> {
                           left: 100,
                           child: _MapPin(
                             emoji: '🏪',
-                            color: const Color(0xFFE65100),
+                            color: AppColors.gold,
                           ),
                         ),
                         Positioned(
@@ -146,7 +146,7 @@ class _MapScreenState extends State<MapScreen> {
                           right: 60,
                           child: _MapPin(
                             emoji: '🤝',
-                            color: const Color(0xFF1565C0),
+                            color: AppColors.natureGreen,
                           ),
                         ),
                         Positioned(
@@ -170,7 +170,7 @@ class _MapScreenState extends State<MapScreen> {
                           right: 80,
                           child: _MapPin(
                             emoji: '🏪',
-                            color: const Color(0xFFE65100),
+                            color: AppColors.gold,
                           ),
                         ),
                       ],
@@ -212,7 +212,7 @@ class _MapScreenState extends State<MapScreen> {
                         child: Text(
                           _filters[index],
                           style: AppTextStyles.bodySmall.copyWith(
-                            color: isSelected ? Colors.white : AppColors.darkText,
+                            color: isSelected ? Colors.white : AppColors.textPrimary,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -311,7 +311,7 @@ class _MapScreenState extends State<MapScreen> {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.star, color: Color(0xFFF9A825), size: 12),
+                  const Icon(Icons.star, color: AppColors.gold, size: 12),
                   const SizedBox(width: 2),
                   Text(
                     marker.rating.toString(),

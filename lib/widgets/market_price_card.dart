@@ -27,7 +27,7 @@ class MarketPriceCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: AppColors.paleGreen.withValues(alpha: 0.3)),
+        border: Border.all(color: AppColors.border.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +39,7 @@ class MarketPriceCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                 decoration: BoxDecoration(
-                  color: (isPositive ? AppColors.successGreen : AppColors.errorRed)
+                  color: (isPositive ? AppColors.success : AppColors.error)
                       .withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(6),
                 ),
@@ -48,7 +48,7 @@ class MarketPriceCard extends StatelessWidget {
                     Icon(
                       isPositive ? Icons.trending_up : Icons.trending_down,
                       size: 10,
-                      color: isPositive ? AppColors.successGreen : AppColors.errorRed,
+                      color: isPositive ? AppColors.success : AppColors.error,
                     ),
                     const SizedBox(width: 2),
                     Text(
@@ -56,7 +56,7 @@ class MarketPriceCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
-                        color: isPositive ? AppColors.successGreen : AppColors.errorRed,
+                        color: isPositive ? AppColors.success : AppColors.error,
                       ),
                     ),
                   ],

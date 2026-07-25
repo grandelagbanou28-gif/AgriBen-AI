@@ -22,7 +22,7 @@ class CropStatusCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: AppColors.paleGreen.withValues(alpha: 0.5)),
+          border: Border.all(color: AppColors.border),
         ),
         child: Row(
           children: [
@@ -30,7 +30,7 @@ class CropStatusCard extends StatelessWidget {
               width: 50,
               height: 50,
               decoration: BoxDecoration(
-                color: crop.iconColor.withValues(alpha: 0.15),
+                color: AppColors.forestGreen.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(14),
               ),
               child: Center(

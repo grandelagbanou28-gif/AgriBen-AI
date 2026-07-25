@@ -106,7 +106,7 @@ class _LogoShowcaseScreenState extends State<LogoShowcaseScreen>
                           style: GoogleFonts.poppins(
                             fontSize: 22,
                             fontWeight: FontWeight.w700,
-                            color: AppColors.darkText,
+                            color: AppColors.textPrimary,
                           ),
                         ),
                       ],
@@ -114,7 +114,7 @@ class _LogoShowcaseScreenState extends State<LogoShowcaseScreen>
                     const SizedBox(height: 6),
                     Text(
                       '4 propositions de logo premium',
-                      style: AppTextStyles.bodySmall.copyWith(color: AppColors.mediumText),
+                      style: AppTextStyles.bodySmall.copyWith(color: AppColors.textSecondary),
                     ),
                   ],
                 ),
@@ -246,7 +246,7 @@ class _LogoShowcaseScreenState extends State<LogoShowcaseScreen>
                         style: GoogleFonts.poppins(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.darkText,
+                          color: AppColors.textPrimary,
                         ),
                       ),
                       if (index == 3) ...[
@@ -288,7 +288,7 @@ class _LogoShowcaseScreenState extends State<LogoShowcaseScreen>
                                 vertical: 3,
                               ),
                               decoration: BoxDecoration(
-                                color: AppColors.paleGreen.withValues(alpha: 0.3),
+                                color: AppColors.border.withValues(alpha: 0.3),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: Text(
@@ -352,7 +352,7 @@ class _LogoShowcaseScreenState extends State<LogoShowcaseScreen>
             style: GoogleFonts.poppins(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: AppColors.darkText,
+              color: AppColors.textPrimary,
             ),
           ),
           const SizedBox(height: 20),
@@ -362,7 +362,7 @@ class _LogoShowcaseScreenState extends State<LogoShowcaseScreen>
             logo.description,
             textAlign: TextAlign.center,
             style: AppTextStyles.body.copyWith(
-              color: AppColors.mediumText,
+              color: AppColors.textSecondary,
               height: 1.6,
             ),
           ),
@@ -457,7 +457,7 @@ class _LogoShowcaseScreenState extends State<LogoShowcaseScreen>
           style: GoogleFonts.poppins(
             fontSize: 9,
             fontWeight: FontWeight.w600,
-            color: AppColors.lightText,
+            color: AppColors.textMuted,
           ),
         ),
       ],
@@ -481,7 +481,7 @@ class _LogoShowcaseScreenState extends State<LogoShowcaseScreen>
           style: GoogleFonts.poppins(
             fontSize: 13,
             fontWeight: FontWeight.w600,
-            color: AppColors.darkText,
+            color: AppColors.textPrimary,
           ),
         ),
         const SizedBox(height: 10),
@@ -518,7 +518,7 @@ class _LogoShowcaseScreenState extends State<LogoShowcaseScreen>
                   style: GoogleFonts.poppins(
                     fontSize: 9,
                     fontWeight: FontWeight.w500,
-                    color: AppColors.mediumText,
+                    color: AppColors.textSecondary,
                   ),
                 ),
               ],
@@ -538,7 +538,7 @@ class _LogoShowcaseScreenState extends State<LogoShowcaseScreen>
           style: GoogleFonts.poppins(
             fontSize: 13,
             fontWeight: FontWeight.w600,
-            color: AppColors.darkText,
+            color: AppColors.textPrimary,
           ),
         ),
         const SizedBox(height: 12),
@@ -588,7 +588,7 @@ class _LogoShowcaseScreenState extends State<LogoShowcaseScreen>
         children: [
           CustomPaint(painter: logo.painter, size: const Size(36, 36)),
           const SizedBox(height: 4),
-          Text(label, style: GoogleFonts.poppins(fontSize: 9, color: AppColors.darkText, fontWeight: FontWeight.w600)),
+          Text(label, style: GoogleFonts.poppins(fontSize: 9, color: AppColors.textPrimary, fontWeight: FontWeight.w600)),
         ],
       ),
     );

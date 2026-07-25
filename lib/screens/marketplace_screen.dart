@@ -35,21 +35,21 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
               decoration: BoxDecoration(
                 color: AppColors.white,
                 borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: AppColors.paleGreen.withValues(alpha: 0.5)),
+                border: Border.all(color: AppColors.border.withValues(alpha: 0.5)),
               ),
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'Rechercher un produit...',
                   prefixIcon: const Icon(
                     Icons.search,
-                    color: AppColors.lightText,
+                    color: AppColors.textMuted,
                     size: 22,
                   ),
                   border: InputBorder.none,
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   filled: false,
-                  hintStyle: AppTextStyles.body.copyWith(color: AppColors.lightText),
+                  hintStyle: AppTextStyles.body.copyWith(color: AppColors.textMuted),
                 ),
               ),
             ),
@@ -75,13 +75,13 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
                         color: isSelected ? AppColors.forestGreen : AppColors.white,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color: isSelected ? AppColors.forestGreen : AppColors.paleGreen,
+                          color: isSelected ? AppColors.forestGreen : AppColors.border,
                         ),
                       ),
                       child: Text(
                         _categories[index],
                         style: AppTextStyles.bodySmall.copyWith(
-                          color: isSelected ? Colors.white : AppColors.darkText,
+                          color: isSelected ? Colors.white : AppColors.textPrimary,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -201,15 +201,15 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
               children: [
-                _buildProducerAvatar('Koffi A.', '4.9 ⭐', 'Soja, Maïs', const Color(0xFF4CAF50)),
+                _buildProducerAvatar('Koffi A.', '4.9', 'Soja, Maïs', AppColors.forestGreen),
                 const SizedBox(width: 14),
-                _buildProducerAvatar('Coop. Zè', '4.8 ⭐', 'Céréales', const Color(0xFF1565C0)),
+                _buildProducerAvatar('Coop. Zè', '4.8', 'Céréales', AppColors.natureGreen),
                 const SizedBox(width: 14),
-                _buildProducerAvatar('Adjovi M.', '4.7 ⭐', 'Légumes', const Color(0xFFFF6D00)),
+                _buildProducerAvatar('Adjovi M.', '4.7', 'Légumes', AppColors.gold),
                 const SizedBox(width: 14),
-                _buildProducerAvatar('Ferme Akp.', '4.6 ⭐', 'Fruits', const Color(0xFFAB47BC)),
+                _buildProducerAvatar('Ferme Akp.', '4.6', 'Fruits', AppColors.forestGreen),
                 const SizedBox(width: 14),
-                _buildProducerAvatar('Sèhè P.', '4.9 ⭐', 'Anacarde', const Color(0xFF8D6E63)),
+                _buildProducerAvatar('Sèhè P.', '4.9', 'Anacarde', AppColors.natureGreen),
               ],
             ),
           ),
@@ -252,9 +252,16 @@ class _MarketplaceScreenState extends State<MarketplaceScreen> {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          Text(
-            rating,
-            style: AppTextStyles.caption,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.star, color: AppColors.gold, size: 10),
+              const SizedBox(width: 2),
+              Text(
+                rating,
+                style: AppTextStyles.caption,
+              ),
+            ],
           ),
         ],
       ),

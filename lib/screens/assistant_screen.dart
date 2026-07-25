@@ -133,7 +133,7 @@ class _AssistantScreenState extends State<AssistantScreen> {
         children: [
           Expanded(
             child: Container(
-              color: AppColors.beige.withValues(alpha: 0.5),
+              color: AppColors.background.withValues(alpha: 0.5),
               child: ListView.builder(
                 controller: _scrollController,
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -188,7 +188,7 @@ class _AssistantScreenState extends State<AssistantScreen> {
               style: GoogleFonts.poppins(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
-                color: isUser ? Colors.white : AppColors.darkText,
+                color: isUser ? Colors.white : AppColors.textPrimary,
                 height: 1.5,
               ),
             ),
@@ -199,7 +199,7 @@ class _AssistantScreenState extends State<AssistantScreen> {
                 fontSize: 10,
                 color: isUser
                     ? Colors.white.withValues(alpha: 0.6)
-                    : AppColors.lightText,
+                    : AppColors.textMuted,
               ),
             ),
           ],
@@ -243,7 +243,7 @@ class _AssistantScreenState extends State<AssistantScreen> {
                       vertical: 12,
                     ),
                     hintStyle: AppTextStyles.body.copyWith(
-                      color: AppColors.lightText,
+                      color: AppColors.textMuted,
                     ),
                   ),
                   style: AppTextStyles.body,

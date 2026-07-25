@@ -29,25 +29,22 @@ class QuickActions extends StatelessWidget {
             _ActionButton(
               icon: Icons.document_scanner_outlined,
               label: 'Scanner',
-              color: AppColors.natureGreen,
               onTap: onScan,
             ),
             _ActionButton(
               icon: Icons.add_circle_outline,
               label: 'Ajouter',
-              color: AppColors.forestGreen,
               onTap: onAddCrop,
             ),
             _ActionButton(
               icon: Icons.storefront_outlined,
               label: 'Marché',
-              color: AppColors.orangeAlert,
               onTap: onMarket,
+              isGold: true,
             ),
             _ActionButton(
               icon: Icons.chat_bubble_outline,
               label: 'Conseil',
-              color: const Color(0xFF1565C0),
               onTap: onAdvice,
             ),
           ],
@@ -60,18 +57,19 @@ class QuickActions extends StatelessWidget {
 class _ActionButton extends StatelessWidget {
   final IconData icon;
   final String label;
-  final Color color;
   final VoidCallback? onTap;
+  final bool isGold;
 
   const _ActionButton({
     required this.icon,
     required this.label,
-    required this.color,
     this.onTap,
+    this.isGold = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    final color = isGold ? AppColors.gold : AppColors.forestGreen;
     return GestureDetector(
       onTap: onTap,
       child: Column(
@@ -80,7 +78,7 @@ class _ActionButton extends StatelessWidget {
             width: 64,
             height: 64,
             decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.1),
+              color: color.withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(18),
             ),
             child: Icon(icon, color: color, size: 28),
@@ -90,7 +88,7 @@ class _ActionButton extends StatelessWidget {
             label,
             style: AppTextStyles.bodySmall.copyWith(
               fontWeight: FontWeight.w500,
-              color: AppColors.darkText,
+              color: AppColors.textPrimary,
             ),
           ),
         ],

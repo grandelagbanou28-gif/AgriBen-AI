@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/app_colors.dart';
 
 enum CropStatus { excellent, good, attention, critical }
 
@@ -12,7 +13,6 @@ class Crop {
   final CropStatus status;
   final String healthDescription;
   final double estimatedYield;
-  final Color iconColor;
 
   const Crop({
     required this.id,
@@ -24,7 +24,6 @@ class Crop {
     required this.status,
     required this.healthDescription,
     required this.estimatedYield,
-    required this.iconColor,
   });
 
   String get statusLabel {
@@ -43,13 +42,13 @@ class Crop {
   Color get statusColor {
     switch (status) {
       case CropStatus.excellent:
-        return const Color(0xFF2E7D32);
+        return AppColors.success;
       case CropStatus.good:
-        return const Color(0xFF4CAF50);
+        return AppColors.natureGreen;
       case CropStatus.attention:
-        return const Color(0xFFFF6D00);
+        return AppColors.warning;
       case CropStatus.critical:
-        return const Color(0xFFC62828);
+        return AppColors.error;
     }
   }
 
@@ -64,7 +63,6 @@ class Crop {
       status: CropStatus.good,
       healthDescription: 'Bonne pousse, feuilles vertes',
       estimatedYield: 3500,
-      iconColor: const Color(0xFFF9A825),
     ),
     Crop(
       id: '2',
@@ -76,7 +74,6 @@ class Crop {
       status: CropStatus.attention,
       healthDescription: 'Légère infection sur les feuilles',
       estimatedYield: 800,
-      iconColor: const Color(0xFFE53935),
     ),
     Crop(
       id: '3',
@@ -88,7 +85,6 @@ class Crop {
       status: CropStatus.excellent,
       healthDescription: 'Croissance optimale',
       estimatedYield: 1200,
-      iconColor: const Color(0xFF66BB6A),
     ),
     Crop(
       id: '4',
@@ -100,7 +96,6 @@ class Crop {
       status: CropStatus.good,
       healthDescription: 'Développement normal',
       estimatedYield: 2400,
-      iconColor: const Color(0xFFFFB300),
     ),
     Crop(
       id: '5',
@@ -112,7 +107,6 @@ class Crop {
       status: CropStatus.excellent,
       healthDescription: 'Excellent état sanitaire',
       estimatedYield: 8000,
-      iconColor: const Color(0xFF8D6E63),
     ),
   ];
 }

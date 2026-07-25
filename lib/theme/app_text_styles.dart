@@ -8,49 +8,49 @@ class AppTextStyles {
   static TextStyle h1 = GoogleFonts.poppins(
     fontSize: 28,
     fontWeight: FontWeight.w700,
-    color: AppColors.darkText,
+    color: AppColors.textPrimary,
     height: 1.2,
   );
 
   static TextStyle h2 = GoogleFonts.poppins(
     fontSize: 22,
     fontWeight: FontWeight.w600,
-    color: AppColors.darkText,
+    color: AppColors.textPrimary,
     height: 1.3,
   );
 
   static TextStyle h3 = GoogleFonts.poppins(
     fontSize: 18,
     fontWeight: FontWeight.w600,
-    color: AppColors.darkText,
+    color: AppColors.textPrimary,
     height: 1.3,
   );
 
   static TextStyle bodyLarge = GoogleFonts.poppins(
     fontSize: 16,
     fontWeight: FontWeight.w500,
-    color: AppColors.darkText,
+    color: AppColors.textPrimary,
     height: 1.5,
   );
 
   static TextStyle body = GoogleFonts.poppins(
     fontSize: 14,
     fontWeight: FontWeight.w400,
-    color: AppColors.darkText,
+    color: AppColors.textPrimary,
     height: 1.5,
   );
 
   static TextStyle bodySmall = GoogleFonts.poppins(
     fontSize: 12,
     fontWeight: FontWeight.w400,
-    color: AppColors.mediumText,
+    color: AppColors.textSecondary,
     height: 1.4,
   );
 
   static TextStyle caption = GoogleFonts.poppins(
     fontSize: 11,
     fontWeight: FontWeight.w500,
-    color: AppColors.lightText,
+    color: AppColors.textMuted,
     letterSpacing: 0.5,
   );
 
@@ -75,7 +75,7 @@ class AppTextStyles {
   static TextStyle statLabel = GoogleFonts.poppins(
     fontSize: 12,
     fontWeight: FontWeight.w500,
-    color: AppColors.lightText,
+    color: AppColors.textMuted,
   );
 
   static TextStyle priceTag = GoogleFonts.poppins(

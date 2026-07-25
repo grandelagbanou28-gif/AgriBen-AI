@@ -111,7 +111,7 @@ class WeatherCard extends StatelessWidget {
               children: [
                 const Icon(
                   Icons.lightbulb_outline,
-                  color: Color(0xFFFFF176),
+                  color: AppColors.gold,
                   size: 20,
                 ),
                 const SizedBox(width: 8),

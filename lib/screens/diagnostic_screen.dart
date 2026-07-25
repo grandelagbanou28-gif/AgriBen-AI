@@ -74,12 +74,12 @@ class _DiagnosticScreenState extends State<DiagnosticScreen>
           width: double.infinity,
           height: 320,
           decoration: BoxDecoration(
-            color: AppColors.darkText.withValues(alpha: 0.05),
+            color: AppColors.textPrimary.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(24),
             border: Border.all(
               color: _isScanning
                   ? AppColors.natureGreen
-                  : AppColors.paleGreen,
+                  : AppColors.border,
               width: _isScanning ? 2 : 1,
             ),
           ),
@@ -223,13 +223,13 @@ class _DiagnosticScreenState extends State<DiagnosticScreen>
                     Icon(
                       Icons.center_focus_strong,
                       size: 48,
-                      color: AppColors.lightText.withValues(alpha: 0.5),
+                      color: AppColors.textMuted.withValues(alpha: 0.5),
                     ),
                     const SizedBox(height: 12),
                     Text(
                       'Cadre de scan',
                       style: AppTextStyles.bodySmall.copyWith(
-                        color: AppColors.lightText,
+                        color: AppColors.textMuted,
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -274,7 +274,7 @@ class _DiagnosticScreenState extends State<DiagnosticScreen>
           'Prenez une photo de la plante ou sélectionnez depuis votre galerie pour diagnostiquer l\'état de santé.',
           textAlign: TextAlign.center,
           style: AppTextStyles.body.copyWith(
-            color: AppColors.mediumText,
+            color: AppColors.textSecondary,
           ),
         ),
         const SizedBox(height: 32),
@@ -324,7 +324,7 @@ class _DiagnosticScreenState extends State<DiagnosticScreen>
           width: double.infinity,
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            gradient: AppColors.lightGradient,
+            gradient: AppColors.subtleGradient,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Column(
@@ -355,10 +355,10 @@ class _DiagnosticScreenState extends State<DiagnosticScreen>
           width: double.infinity,
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: AppColors.orangeAlert.withValues(alpha: 0.1),
+            color: AppColors.warning.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: AppColors.orangeAlert.withValues(alpha: 0.3),
+              color: AppColors.warning.withValues(alpha: 0.3),
             ),
           ),
           child: Row(
@@ -367,12 +367,12 @@ class _DiagnosticScreenState extends State<DiagnosticScreen>
                 width: 44,
                 height: 44,
                 decoration: BoxDecoration(
-                  color: AppColors.orangeAlert.withValues(alpha: 0.2),
+                  color: AppColors.warning.withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: const Icon(
                   Icons.warning_amber_rounded,
-                  color: AppColors.orangeAlert,
+                  color: AppColors.warning,
                   size: 22,
                 ),
               ),
@@ -384,7 +384,7 @@ class _DiagnosticScreenState extends State<DiagnosticScreen>
                     Text(
                       'Niveau de risque : Moyen',
                       style: AppTextStyles.bodyLarge.copyWith(
-                        color: AppColors.orangeAlert,
+                        color: AppColors.warning,
                       ),
                     ),
                     const SizedBox(height: 2),
@@ -417,7 +417,7 @@ class _DiagnosticScreenState extends State<DiagnosticScreen>
           'Traitement recommandé',
           '• Bouillie bordelaise (20g/L d\'eau)\n• Poudre de concombre amer en pulvérisation\n• En cas de persistance : traitement chimique à base de cuivre',
           Icons.healing_outlined,
-          const Color(0xFF1565C0),
+          AppColors.forestGreen,
         ),
         const SizedBox(height: 24),
         SizedBox(
@@ -469,7 +469,7 @@ class _DiagnosticScreenState extends State<DiagnosticScreen>
           Text(
             content,
             style: AppTextStyles.body.copyWith(
-              color: AppColors.mediumText,
+              color: AppColors.textSecondary,
               height: 1.6,
             ),
           ),

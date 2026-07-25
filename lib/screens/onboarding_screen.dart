@@ -15,29 +15,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _controller = PageController();
   int _currentPage = 0;
 
-  final List<_OnboardingPage> _pages = const [
-    _OnboardingPage(
-      title: 'Suivez vos cultures\nfacilement',
-      subtitle: 'Gérez vos parcelles, suivez la croissance de vos plantes et optimisez votre récolte en un clin d\'œil.',
-      emoji: '👨‍🌾',
-      gradientColors: [Color(0xFFE8F5E9), Color(0xFFF1F8E9)],
-    ),
-    _OnboardingPage(
-      title: 'Protégez vos\nrécoltes',
-      subtitle: 'Identifiez les maladies et les ravageurs rapidement. Recevez des conseils adaptés à chaque situation.',
-      emoji: '🌿',
-      gradientColors: [Color(0xFFE3F2FD), Color(0xFFE8EAF6)],
-    ),
-    _OnboardingPage(
-      title: 'Développez votre\nactivité',
-      subtitle: 'Vendez vos produits directement, trouvez les meilleurs prix et connectez-vous avec les acheteurs.',
-      emoji: '🤝',
-      gradientColors: [Color(0xFFFBE9E7), Color(0xFFF3E5F5)],
-    ),
+  static const List<Color> _pageColors = [
+    Color(0xFFF0FDF4),
+    Color(0xFFECFDF5),
+    Color(0xFFF7FEE7),
+  ];
+
+  static const List<String> _titles = [
+    'Suivez vos cultures\nfacilement',
+    'Protégez vos\nrécoltes',
+    'Développez votre\nactivité',
+  ];
+
+  static const List<String> _subtitles = [
+    'Gérez vos parcelles, suivez la croissance de vos plantes et optimisez votre récolte en un clin d\'œil.',
+    'Identifiez les maladies et les ravageurs rapidement. Recevez des conseils adaptés à chaque situation.',
+    'Vendez vos produits directement, trouvez les meilleurs prix et connectez-vous avec les acheteurs.',
+  ];
+
+  static const List<String> _emojis = [
+    '👨‍🌾',
+    '🌿',
+    '🤝',
   ];
 
   void _nextPage() {
-    if (_currentPage < _pages.length - 1) {
+    if (_currentPage < 2) {
       _controller.nextPage(
         duration: const Duration(milliseconds: 400),
         curve: Curves.easeInOut,
@@ -82,7 +85,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Text(
                     'Passer',
                     style: AppTextStyles.body.copyWith(
-                      color: AppColors.lightText,
+                      color: AppColors.textMuted,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -92,12 +95,61 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Expanded(
               child: PageView.builder(
                 controller: _controller,
-                itemCount: _pages.length,
+                itemCount: 3,
                 onPageChanged: (index) {
                   setState(() => _currentPage = index);
                 },
                 itemBuilder: (context, index) {
-                  return _buildPage(_pages[index]);
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: _pageColors[index],
+                              borderRadius: BorderRadius.circular(28),
+                            ),
+                            child: Center(
+                              child: Text(
+                                _emojis[index],
+                                style: const TextStyle(fontSize: 100),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 40),
+                        Expanded(
+                          flex: 2,
+                          child: Column(
+                            children: [
+                              Text(
+                                _titles[index],
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.textPrimary,
+                                  height: 1.2,
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              Text(
+                                _subtitles[index],
+                                textAlign: TextAlign.center,
+                                style: AppTextStyles.body.copyWith(
+                                  color: AppColors.textSecondary,
+                                  height: 1.6,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
                 },
               ),
             ),
@@ -108,7 +160,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(
-                      _pages.length,
+                      3,
                       (index) => AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
                         margin: const EdgeInsets.symmetric(horizontal: 4),
@@ -117,7 +169,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         decoration: BoxDecoration(
                           color: _currentPage == index
                               ? AppColors.forestGreen
-                              : AppColors.paleGreen,
+                              : AppColors.border,
                           borderRadius: BorderRadius.circular(4),
                         ),
                       ),
@@ -130,9 +182,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: ElevatedButton(
                       onPressed: _nextPage,
                       child: Text(
-                        _currentPage == _pages.length - 1
-                            ? 'Commencer'
-                            : 'Suivant',
+                        _currentPage == 2 ? 'Commencer' : 'Suivant',
                         style: AppTextStyles.button,
                       ),
                     ),
@@ -145,71 +195,4 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
     );
   }
-
-  Widget _buildPage(_OnboardingPage page) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        children: [
-          Expanded(
-            flex: 3,
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: page.gradientColors.first,
-                borderRadius: BorderRadius.circular(28),
-              ),
-              child: Center(
-                child: Text(
-                  page.emoji,
-                  style: const TextStyle(fontSize: 100),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: 40),
-          Expanded(
-            flex: 2,
-            child: Column(
-              children: [
-                Text(
-                  page.title,
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                    fontSize: 26,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.darkText,
-                    height: 1.2,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  page.subtitle,
-                  textAlign: TextAlign.center,
-                  style: AppTextStyles.body.copyWith(
-                    color: AppColors.mediumText,
-                    height: 1.6,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _OnboardingPage {
-  final String title;
-  final String subtitle;
-  final String emoji;
-  final List<Color> gradientColors;
-
-  const _OnboardingPage({
-    required this.title,
-    required this.subtitle,
-    required this.emoji,
-    required this.gradientColors,
-  });
 }

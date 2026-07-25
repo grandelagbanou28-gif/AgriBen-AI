@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   child: const Center(
                     child: Text(
-                      'G',
+                      'A',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -81,16 +81,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Bonjour Grandel 👋',
+                        'Bonjour Grandel',
                         style: AppTextStyles.h2.copyWith(fontSize: 18),
                       ),
                       const SizedBox(height: 2),
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.location_on_outlined,
                             size: 14,
-                            color: AppColors.lightText,
+                            color: AppColors.textMuted,
                           ),
                           const SizedBox(width: 4),
                           Text(
@@ -108,16 +108,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                     color: AppColors.white,
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(
-                      color: AppColors.paleGreen.withValues(alpha: 0.5),
-                    ),
+                    border: Border.all(color: AppColors.border),
                   ),
                   child: Stack(
                     children: [
                       const Center(
                         child: Icon(
                           Icons.notifications_outlined,
-                          color: AppColors.darkText,
+                          color: AppColors.textPrimary,
                           size: 22,
                         ),
                       ),
@@ -128,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 8,
                           height: 8,
                           decoration: const BoxDecoration(
-                            color: AppColors.orangeAlert,
+                            color: AppColors.gold,
                             shape: BoxShape.circle,
                           ),
                         ),
@@ -192,7 +190,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icons.landscape_outlined,
                 label: 'Parcelles',
                 value: '4',
-                color: AppColors.forestGreen,
               ),
             ),
             const SizedBox(width: 12),
@@ -201,7 +198,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icons.eco_outlined,
                 label: 'Cultures',
                 value: '5',
-                color: AppColors.natureGreen,
               ),
             ),
           ],
@@ -214,7 +210,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icons.trending_up_outlined,
                 label: 'Rendement',
                 value: '3.2t',
-                color: const Color(0xFF1565C0),
               ),
             ),
             const SizedBox(width: 12),
@@ -223,7 +218,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icons.account_balance_wallet_outlined,
                 label: 'Revenus',
                 value: '1.8M',
-                color: AppColors.orangeAlert,
                 suffix: 'FCFA',
               ),
             ),
@@ -269,14 +263,12 @@ class _StatCard extends StatelessWidget {
   final IconData icon;
   final String label;
   final String value;
-  final Color color;
   final String? suffix;
 
   const _StatCard({
     required this.icon,
     required this.label,
     required this.value,
-    required this.color,
     this.suffix,
   });
 
@@ -287,9 +279,7 @@ class _StatCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: color.withValues(alpha: 0.15),
-        ),
+        border: Border.all(color: AppColors.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -298,10 +288,10 @@ class _StatCard extends StatelessWidget {
             width: 36,
             height: 36,
             decoration: BoxDecoration(
-              color: color.withValues(alpha: 0.1),
+              color: AppColors.forestGreen.withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Icon(icon, color: color, size: 18),
+            child: Icon(icon, color: AppColors.forestGreen, size: 18),
           ),
           const SizedBox(height: 12),
           Row(
@@ -312,7 +302,7 @@ class _StatCard extends StatelessWidget {
                 style: GoogleFonts.poppins(
                   fontSize: 22,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.darkText,
+                  color: AppColors.textPrimary,
                 ),
               ),
               if (suffix != null) ...[
@@ -321,9 +311,7 @@ class _StatCard extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 3),
                   child: Text(
                     suffix!,
-                    style: AppTextStyles.bodySmall.copyWith(
-                      color: AppColors.lightText,
-                    ),
+                    style: AppTextStyles.bodySmall,
                   ),
                 ),
               ],

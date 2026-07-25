@@ -61,17 +61,17 @@ class MessagesScreen extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.white,
               borderRadius: BorderRadius.circular(14),
-              border: Border.all(color: AppColors.paleGreen.withValues(alpha: 0.5)),
+              border: Border.all(color: AppColors.border.withValues(alpha: 0.5)),
             ),
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'Rechercher...',
-                prefixIcon: const Icon(Icons.search, color: AppColors.lightText, size: 22),
+                prefixIcon: const Icon(Icons.search, color: AppColors.textMuted, size: 22),
                 border: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 filled: false,
-                hintStyle: AppTextStyles.body.copyWith(color: AppColors.lightText),
+                hintStyle: AppTextStyles.body.copyWith(color: AppColors.textMuted),
               ),
             ),
           ),
@@ -110,7 +110,7 @@ class MessagesScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: conv.isSystem
                     ? AppColors.forestGreen.withValues(alpha: 0.1)
-                    : AppColors.paleGreen.withValues(alpha: 0.5),
+                    : AppColors.border.withValues(alpha: 0.5),
                 shape: BoxShape.circle,
               ),
               child: Center(

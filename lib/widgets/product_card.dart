@@ -22,7 +22,7 @@ class ProductCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: AppColors.cardShadow,
+            color: AppColors.shadow,
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -35,7 +35,7 @@ class ProductCard extends StatelessWidget {
             height: 120,
             width: double.infinity,
             decoration: BoxDecoration(
-              color: AppColors.paleGreen.withValues(alpha: 0.5),
+              color: AppColors.border.withValues(alpha: 0.5),
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(16),
                 topRight: Radius.circular(16),
@@ -66,7 +66,7 @@ class ProductCard extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        const Icon(Icons.star, color: Color(0xFFF9A825), size: 14),
+                        const Icon(Icons.star, color: AppColors.gold, size: 14),
                         const SizedBox(width: 2),
                         Text(
                           product.rating.toString(),
@@ -91,7 +91,7 @@ class ProductCard extends StatelessWidget {
                     Icon(
                       Icons.location_on_outlined,
                       size: 14,
-                      color: AppColors.lightText,
+                      color: AppColors.textMuted,
                     ),
                     const SizedBox(width: 2),
                     Expanded(

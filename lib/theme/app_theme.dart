@@ -17,13 +17,13 @@ class AppTheme {
         surface: AppColors.white,
         onPrimary: AppColors.white,
         onSecondary: AppColors.white,
-        onSurface: AppColors.darkText,
-        error: AppColors.errorRed,
+        onSurface: AppColors.textPrimary,
+        error: AppColors.error,
         onError: AppColors.white,
       ),
       textTheme: GoogleFonts.poppinsTextTheme().apply(
-        bodyColor: AppColors.darkText,
-        displayColor: AppColors.darkText,
+        bodyColor: AppColors.textPrimary,
+        displayColor: AppColors.textPrimary,
       ),
       appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
@@ -32,9 +32,9 @@ class AppTheme {
         titleTextStyle: GoogleFonts.poppins(
           fontSize: 20,
           fontWeight: FontWeight.w600,
-          color: AppColors.darkText,
+          color: AppColors.textPrimary,
         ),
-        iconTheme: const IconThemeData(color: AppColors.darkText),
+        iconTheme: const IconThemeData(color: AppColors.textPrimary),
       ),
       cardTheme: CardThemeData(
         color: AppColors.white,
@@ -61,7 +61,7 @@ class AppTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.forestGreen,
-          side: const BorderSide(color: AppColors.forestGreen, width: 1.5),
+          side: const BorderSide(color: AppColors.border, width: 1.5),
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(14),
@@ -81,7 +81,7 @@ class AppTheme {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
-          borderSide: BorderSide(color: AppColors.paleGreen),
+          borderSide: const BorderSide(color: AppColors.border),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
@@ -89,14 +89,14 @@ class AppTheme {
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         hintStyle: GoogleFonts.poppins(
-          color: AppColors.lightText,
+          color: AppColors.textMuted,
           fontSize: 15,
         ),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: AppColors.white,
         selectedItemColor: AppColors.forestGreen,
-        unselectedItemColor: AppColors.lightText,
+        unselectedItemColor: AppColors.textMuted,
         type: BottomNavigationBarType.fixed,
         elevation: 8,
       ),
