@@ -472,6 +472,9 @@ class _DiagnosticScreenState extends State<DiagnosticScreen>
                   if (_result!.isFromApi) ...[
                     const SizedBox(width: 8),
                     _buildInfoChip('PlantNet', Icons.cloud_outlined),
+                  ] else ...[
+                    const SizedBox(width: 8),
+                    _buildInfoChip('Mode démo', Icons.science_outlined),
                   ],
                 ],
               ),

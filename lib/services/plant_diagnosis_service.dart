@@ -7,7 +7,7 @@ import '../models/diagnosis_result.dart';
 
 class PlantDiagnosisService {
   static const String _apiKeyPref = 'plantnet_api_key';
-  static const String _baseUrl = 'https://my-api.plantnet.org/v2/identify';
+  static const String _baseUrl = 'https://my-api.plantnet.org/v2/identify/africa';
   static const String _defaultApiKey = '2b106QgG0UJTRUYILRzrtECgS';
 
   static Future<String?> getApiKey() async {
@@ -65,20 +65,55 @@ class PlantDiagnosisService {
 
     final bestResult = data['results'][0];
     final species = bestResult['species'];
-    final commonNames = species['commonNames'] ?? [];
+    final commonNames = List<String>.from(species['commonNames'] ?? []);
     final scientificName = species['scientificName'] ?? '';
+    final score = (bestResult['score'] ?? 0).toDouble();
+
+    final plantName =
+        commonNames.isNotEmpty ? commonNames[0] : scientificName;
+
+    final matchedDisease = _findDiseaseForPlant(plantName);
+
+    if (matchedDisease != null) {
+      return DiagnosisResult(
+        plantName: plantName,
+        plantNameLatin: scientificName,
+        confidence: score,
+        healthStatus: matchedDisease['status']!,
+        diseaseName: matchedDisease['disease']!,
+        description:
+            '${matchedDisease['description']}\n\nIdentifié par PlantNet avec ${(score * 100).toStringAsFixed(0)}% de confiance.',
+        symptoms: List<String>.from(matchedDisease['symptoms']!),
+        treatments: List<String>.from(matchedDisease['treatments']!),
+        preventionTips: List<String>.from(matchedDisease['prevention']!),
+        severity: matchedDisease['severity']!,
+        isFromApi: true,
+      );
+    }
 
     return DiagnosisResult(
-      plantName: commonNames.isNotEmpty ? commonNames[0] : scientificName,
+      plantName: plantName,
       plantNameLatin: scientificName,
-      confidence: (bestResult['score'] ?? 0).toDouble(),
+      confidence: score,
       healthStatus: 'Identifié par PlantNet',
       diseaseName: '',
       description:
-          'Plante identifiée avec ${(bestResult['score'] * 100).toStringAsFixed(0)}% de confiance.',
+          'Plante identifiée avec ${(score * 100).toStringAsFixed(0)}% de confiance.',
       severity: 'Info',
       isFromApi: true,
     );
+  }
+
+  static Map<String, dynamic>? _findDiseaseForPlant(String plantName) {
+    final lower = plantName.toLowerCase();
+    final diseases = _getMockDiseases();
+    for (final d in diseases) {
+      final name = (d['plant'] as String).toLowerCase();
+      if (lower.contains(name) || name.contains(lower)) {
+        return d;
+      }
+    }
+    return null;
   }
 
   static DiagnosisResult _diagnoseWithMock(File imageFile) {
@@ -127,6 +162,33 @@ class PlantDiagnosisService {
           'Arroser au pied, jamais par aspersion',
           'Pailler le sol pour réduire l\'humidité',
           'Rotation des cultures tous les 2 ans',
+        ],
+        'severity': 'Élevé',
+      },
+      {
+        'plant': 'Piment',
+        'latin': 'Capsicum annuum',
+        'status': 'Maladie détectée',
+        'disease': 'Flétrissement bactérien du piment',
+        'description':
+            'Le piment au Bénin souffre souvent du flétrissement bactérien (Ralstonia solanacearum) et de l\'oïdium. Ces maladies réduisent fortement le rendement.',
+        'symptoms': [
+          'Flétrissement unilatéral des feuilles',
+          'Taches blanches farineuses (oïdium)',
+          'Brunissement des tiges à la base',
+          'Fruits petits et déformés',
+        ],
+        'treatments': [
+          'Arrachage et destruction des plants infectés',
+          'Pulvérisation de soufre contre l\'oïdium',
+          'Bouillie bordelaise préventive',
+          'Désinfection des outils de culture',
+        ],
+        'prevention': [
+          'Utiliser des semences certifiées et saines',
+          'Éviter les blessures aux racines lors du désherbage',
+          'Rotation avec des légumineuses (ni solanacées 2 ans)',
+          'Paillage pour limiter les éclaboussures',
         ],
         'severity': 'Élevé',
       },
