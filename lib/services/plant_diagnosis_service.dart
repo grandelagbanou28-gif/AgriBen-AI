@@ -8,7 +8,7 @@ import '../models/diagnosis_result.dart';
 class PlantDiagnosisService {
   static const String _apiKeyPref = 'plantnet_api_key';
   static const String _baseUrl = 'https://my-api.plantnet.org/v2/identify';
-  static const String _defaultApiKey = '2b10boym1CUFA26984D3WIYge';
+  static const String _defaultApiKey = '2b106QgG0UJTRUYILRzrtECgS';
 
   static Future<String?> getApiKey() async {
     final prefs = await SharedPreferences.getInstance();
