@@ -1,6 +1,7 @@
 import 'dart:convert';
+import 'dart:developer' as dev;
 import 'dart:io';
-import 'dart:math';
+import 'dart:math' hide log;
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/diagnosis_result.dart';
@@ -24,12 +25,27 @@ class PlantDiagnosisService {
 
   static Future<DiagnosisResult> diagnose(File imageFile) async {
     final apiKey = await getApiKey();
+    dev.log('[PlantNet] diagnose called. apiKey present: ${apiKey != null && apiKey.isNotEmpty}');
 
     if (apiKey != null && apiKey.isNotEmpty) {
       try {
         return await _diagnoseWithPlantNet(imageFile, apiKey);
       } catch (e) {
-        return _diagnoseWithMock(imageFile);
+        dev.log('[PlantNet] API failed, falling back to mock. Error: $e');
+        final mock = _diagnoseWithMock(imageFile);
+        return DiagnosisResult(
+          plantName: mock.plantName,
+          plantNameLatin: mock.plantNameLatin,
+          confidence: mock.confidence,
+          healthStatus: mock.healthStatus,
+          diseaseName: mock.diseaseName,
+          description: '${mock.description}\n\n⚠️ PlantNet indisponible: $e',
+          symptoms: mock.symptoms,
+          treatments: mock.treatments,
+          preventionTips: mock.preventionTips,
+          severity: mock.severity,
+          isFromApi: false,
+        );
       }
     }
 
@@ -38,6 +54,8 @@ class PlantDiagnosisService {
 
   static Future<DiagnosisResult> _diagnoseWithPlantNet(
       File imageFile, String apiKey) async {
+    dev.log('[PlantNet] URL: $_baseUrl');
+    dev.log('[PlantNet] image path: ${imageFile.path}');
     final uri = Uri.parse('$_baseUrl?api-key=$apiKey');
     final request = http.MultipartRequest('POST', uri);
 
@@ -48,13 +66,15 @@ class PlantDiagnosisService {
     request.fields['organs'] = 'auto';
 
     final streamedResponse = await request.send().timeout(
-      const Duration(seconds: 15),
+      const Duration(seconds: 30),
     );
 
     final response = await http.Response.fromStream(streamedResponse);
+    dev.log('[PlantNet] status: ${response.statusCode}');
+    dev.log('[PlantNet] body: ${response.body.substring(0, response.body.length > 300 ? 300 : response.body.length)}');
 
     if (response.statusCode != 200) {
-      throw Exception('API error: ${response.statusCode}');
+      throw Exception('API error ${response.statusCode}: ${response.body.substring(0, 200)}');
     }
 
     final data = json.decode(response.body);
